@@ -100,6 +100,9 @@ def generate_weather(winter_avg:float, summer_avg:float, year:int=2049, save:boo
                     'pressure': p}
     
     df = pd.DataFrame(weather_data)
+    if save:
+        assert(filename.endswith('.csv'))
+        df.to_csv(filename, index=False)
     
     if noise:
         df = utils._add_noise(df, deviation=deviation, outliers=outliers, nans=nans)
@@ -111,9 +114,5 @@ def generate_weather(winter_avg:float, summer_avg:float, year:int=2049, save:boo
         ax3.plot(h)
         ax4.plot(p)
         plt.show()
-    
-    if save:
-        assert(filename.endswith('.csv'))
-        df.to_csv(filename, index=False)
     
     return df

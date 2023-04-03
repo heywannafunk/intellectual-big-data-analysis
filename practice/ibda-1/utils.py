@@ -42,9 +42,9 @@ def _add_noise(weather_data:pd.DataFrame, deviation:float=0.02, outliers:float=0
     #add outliers and nans
     if outliers or nans:
         for key in result.columns[1:]:
-            for i in range(48*365):
+            for i in range(len(result[key])):
                 if random.random() < nans: 
                     result.loc[i, key] = None
                 if random.random() < outliers:
-                    result.loc[i, key] = np.round(result.loc[i, key] * 1_000_000, round)
+                    result.loc[i, key] = np.round(result[key][i] * 1_000_000, round)
     return result
