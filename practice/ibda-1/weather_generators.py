@@ -91,7 +91,7 @@ def generate_weather(winter_avg:float, summer_avg:float, year:int=2049, save:boo
     l = generate_lighting()
     h = generate_humidity(t)
     p = generate_pressure(t, h)
-    time = utils._get_time()
+    time = utils._get_time(year)
     
     weather_data = {'datetime': time,
                     'temperature': t,
